@@ -3,9 +3,9 @@
 {% block title %} Welcome to index {% endblock %}
 
 {% block content %}
-    <form action="">
-        <input class="" type="text">
-        <button class="" type="submit"></button>
-        <p class="county_name"></p>
+    <form action="{{ ('send_address') }}" method="post">
+        <input class="" type="text" name="_address">
+        <button class="" type="submit">SEARCH</button>
+        <p class="country_name">{{ _country }}</p>
     </form>
 {% endblock %}

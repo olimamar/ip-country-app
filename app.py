@@ -1,7 +1,10 @@
 from flask import Flask
-# from flask import request
+from flask import request
 from flask import render_template
-
+from flask import redirect
+from flask import url_for
+import json
+import requests
 
 app = Flask(__name__)
 
@@ -19,7 +22,9 @@ def login():
 def index():
     return render_template('index.html')
 
-def ip(address):
+@app.route("/send_address", methods=['POST'])
+def ip_func():
+    address = request.form.get('_address')
     a, b = address.split("/")
     first, second, third, fourth = a.split(".")
     first = str(bin(int(first)))[2:]
@@ -34,13 +39,21 @@ def ip(address):
         third = "0" + third
     while len(fourth) != 8:
         fourth = "0" + fourth
-    bin_ip = first + " " + second + " " + third + " " + fourth
+    bin_ip = first + second + third + fourth
     
-    bin_ip = bin_ip[-(32-b)]
-    for i in 32-b:
+    bin_ip = bin_ip[:int(b)]
+    for i in range (32-int(b)):
         bin_ip += "0"
     
-    first, second, third, fourth = a.split(".")
-    address = str(int(first, 2)) + "." + str(int(second, 2)) + "." + str(int(third, 2)) + "." + str(int(fourth, 2)) + "/" + b
-    return address 
+    address = str(int(bin_ip[0:8], 2)) + "." + str(int(bin_ip[8:16], 2)) + "." + str(int(bin_ip[16:24], 2)) + "." + str(int(bin_ip[24:32], 2)) + "/" + b
+    s = '{"_ip": "' + address + '"}'
+    print(s)
+    result = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/send_address', s)
+    return redirect(url_for('country'))
 
+
+@app.route('/get_country')
+def country():
+    result = requests.get('https://spbcoit.ru/proxy/11/postgrest/rpc/send_address')
+    country = json.loads(result.text)
+    return render_template('index.html', _country=country)
