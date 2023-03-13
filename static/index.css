@@ -1,6 +1,16 @@
-h1 {
-    border: 2px #eee solid;
-    color: brown;
-    text-align: center;
-    padding: 10px;
-};
+.input{
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: #777;
+
+}
+.bt{
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: #777;
+}
+.country_name{
+    color: black;
+}

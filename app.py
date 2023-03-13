@@ -8,6 +8,9 @@ import requests
 
 app = Flask(__name__)
 
+result = ""
+
+
 @app.route("/")
 def base():
     return render_template('base.html')
@@ -25,6 +28,7 @@ def index():
 @app.route("/send_address", methods=['POST'])
 def ip_func():
     address = request.form.get('_address')
+    haddress = address
     a, b = address.split("/")
     first, second, third, fourth = a.split(".")
     first = str(bin(int(first)))[2:]
@@ -48,12 +52,13 @@ def ip_func():
     address = str(int(bin_ip[0:8], 2)) + "." + str(int(bin_ip[8:16], 2)) + "." + str(int(bin_ip[16:24], 2)) + "." + str(int(bin_ip[24:32], 2)) + "/" + b
     s = '{"_ip": "' + address + '"}'
     print(s)
+    global result
     result = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/send_address', s)
+    result2 = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/add_history', haddress)
     return redirect(url_for('country'))
 
 
 @app.route('/get_country')
 def country():
-    result = requests.get('https://spbcoit.ru/proxy/11/postgrest/rpc/send_address')
-    country = json.loads(result.text)
-    return render_template('index.html', _country=country)
+    return render_template('index.html', _country=result.text)
+

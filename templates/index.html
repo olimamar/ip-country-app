@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %} Welcome to index {% endblock %}
+{% block title %} Index {% endblock %}
 
 {% block content %}
     <form action="{{ ('send_address') }}" method="post">
-        <input class="" type="text" name="_address">
-        <button class="" type="submit">SEARCH</button>
+        <input class="input" type="text" name="_address">
+        <button class="bt" type="submit">SEARCH</button>
         <p class="country_name">{{ _country }}</p>
     </form>
 {% endblock %}
