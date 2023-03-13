@@ -62,3 +62,4 @@ def ip_func():
 def country():
     return render_template('index.html', _country=result.text)
 
+app.run(host='0.0.0.0', port=30011)
