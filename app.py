@@ -84,7 +84,7 @@ def ip_func():
     global result
     result = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/send_address', s)
     result2 = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/add_history', haddress)
-    return redirect('/get_country')
+    return redirect('/proxy/11/flask/get_country')
 
 
 @app.route('/get_country')
