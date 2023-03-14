@@ -14,17 +14,17 @@ result_reg = 0
 
 @app.route("/")
 def base():
-    return render_template('base.html')
-
-
-@app.route("/login")
-def login():
-    return render_template('login.html')
-
-
-@app.route("/index")
-def index():
     return render_template('index.html')
+
+
+#@app.route("/login")
+#def login():
+#    return render_template('login.html')
+
+
+#@app.route("/index")
+#def index():
+#    return render_template('index.html')
 
 
 @app.route("/log", methods=['POST'])
