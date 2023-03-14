@@ -33,13 +33,20 @@ body{
 /* MIDDLE */
 .div-form{
     height: 100%;
+}
+.form{
+    height: 100%;
     display: flex;
     align-items: center;
 }
-.form{
+form{
     background-color: #eee;
     border-radius: 10px;
     width: 800px;
     height: 550px;
     margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
 }

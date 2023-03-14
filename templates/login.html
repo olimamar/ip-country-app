@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %} Welcome to login {% endblock %}
+
 {% block content %}
-    <h1>{% block title %} Welcome to login {% endblock %}</h1>
+    <form action="{{ ('log') }}" method="POST">
+        <input class="input" type="text" name="_login">
+        <input class="input" type="text" name="_password">
+        <button class="bt" type="submit" name="form_bt" value="v_log">LOGIN</button>
+        <button class="bt" type="submit" name="form_bt" value="v_reg">REGISTRATION</button>
+    </form>
 {% endblock %}
