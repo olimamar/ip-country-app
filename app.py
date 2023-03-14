@@ -12,40 +12,40 @@ result = ""
 result_log = 0
 result_reg = 0
 
-@app.route("/")
-def base():
-    return render_template('index.html')
+# @app.route("/")
+# def base():
+#     return render_template('base.html')
 
 
-#@app.route("/login")
-#def login():
+# @app.route("/login")
+# def login():
 #    return render_template('login.html')
 
 
-#@app.route("/index")
-#def index():
-#    return render_template('index.html')
+@app.route("/")
+def index():
+   return render_template('index.html')
 
 
-@app.route("/log", methods=['POST'])
-def log():
-    log = request.form.get('_login')
-    passwd = request.form.get('_password')
-    global result_log
-    global result_reg
+# @app.route("/log", methods=['POST'])
+# def log():
+#     log = request.form.get('_login')
+#     passwd = request.form.get('_password')
+#     global result_log
+#     global result_reg
     
-    if (['action'] == "v_log"):
-        result_log = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/log', log, passwd)
-        if result_log == 0:
-            return redirect(url_for('login'))
-        else:
-            return redirect(url_for('index'))
-    else:
-        result_reg = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/reg', log, passwd)
-        if result_reg == 0:
-            return redirect(url_for('login'))
-        else:
-            return redirect(url_for('index'))
+#     if (['action'] == "v_log"):
+#         result_log = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/log', log, passwd)
+#         if result_log == 0:
+#             return redirect(url_for('login'))
+#         else:
+#             return redirect(url_for('index'))
+#     else:
+#         result_reg = requests.post('https://spbcoit.ru/proxy/11/postgrest/rpc/reg', log, passwd)
+#         if result_reg == 0:
+#             return redirect(url_for('login'))
+#         else:
+#             return redirect(url_for('index'))
     
     
     #if result_log == 0 or result_reg == 0:
